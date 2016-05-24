@@ -58,16 +58,19 @@ public class Counter {
                 optimalLengthOfPlot = i;
                 break;
             }
-            System.out.println(xData[i] + " " + yData[i] + " " + countZeroCrossings);
+            if(GlobalVariables.loggingEnabled)
+                System.out.println(xData[i] + " " + yData[i] + " " + countZeroCrossings);
         }
-        System.out.println(optimalLengthOfPlot);
+        if(GlobalVariables.loggingEnabled)
+            System.out.println(optimalLengthOfPlot);
         //
         xData = new double[numberOfDots];
         yData = new double[numberOfDots];
         for (int i = 0; i < numberOfDots; i++) {
             xData[i] = ((double) i * optimalLengthOfPlot) / ((double) numberOfDots); //xdata is taken in a way to count all the dots in required interval
             yData[i] = countNextOperand(n, nEffective, a_1, xData[i], z);
-            System.out.println(xData[i] + " " + yData[i]);
+            if(GlobalVariables.loggingEnabled)
+                System.out.println(xData[i] + " " + yData[i]);
         }
         return new double[][] {xData, yData};
     }

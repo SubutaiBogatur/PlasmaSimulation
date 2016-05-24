@@ -29,12 +29,12 @@ public class MainFrame extends JFrame implements MouseListener {
         this.setBounds(0,0,800,500);
         this.setLayout(null);
         if(GlobalVariables.loggingEnabled)
-           System.out.println("Main running");
+            System.out.println("Main running");
     }
 
     public void update(String ionString, String lsj, String elLayer) {
         if(GlobalVariables.loggingEnabled)
-         System.out.println(ionString);
+            System.out.println(ionString);
         ion.setText(ionString);
         symbolsWithLSJ.setText(lsj);
         electronicLayersString.setText(elLayer);
@@ -160,26 +160,12 @@ public class MainFrame extends JFrame implements MouseListener {
             int a[] = new int[2];
             a[0] = sl[0] - '1';
             a[1] = -1;
-            switch (sl[1]) {
-                case 's':
-                    a[1] = 0;
-                    break;
-                case 'p':
-                    a[1] = 1;
-                    break;
-                case 'd':
-                    a[1] = 2;
-                    break;
-                case 'f':
-                    a[1] = 3;
-                    break;
-                case 'g':
-                    a[1] = 4;
-                    break;
-                case 'h':
-                    a[1] = 5;
-                    break;
+
+            for(int i=0;i<GlobalVariables.sizeOfTable;i++){
+                if(sl[1] == Atom.orbitalNames[i])
+                    a[1] = i;
             }
+
             // Проверка на правильность ввода уровня и оболочки.
             if (a[0] > -1 && a[0] < 6 && a[1] > -1 && a[1] <= a[0]) {
                 controller.changeElectronShell(0, a[0], a[1], delta);
